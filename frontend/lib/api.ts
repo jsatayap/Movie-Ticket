@@ -25,3 +25,9 @@ export async function getBooking(id: number) {
   if (!res.ok) throw new Error("Failed to fetch booking");
   return res.json();
 }
+
+export async function getReport() {
+  const res = await fetch(`${API_BASE}/reports/`, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to fetch report");
+  return res.json();
+}

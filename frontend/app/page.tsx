@@ -7,6 +7,7 @@ export default async function Home() {
   return (
     <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
       <h1>MovieTicket — Now Showing</h1>
+      <Link href="/report">View Report</Link>
       <div style={{ display: "grid", gap: "1rem", marginTop: "1.5rem" }}>
         {shows.map((show: any) => (
           <div key={show.id} style={{ border: "1px solid #ccc", padding: "1rem", borderRadius: "8px" }}>

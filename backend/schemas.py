@@ -30,3 +30,16 @@ class BookingOut(BaseModel):
     status: str
     class Config:
         from_attributes = True
+
+class ShowReportItem(BaseModel):
+    movie_title: str
+    show_time: datetime
+    hall: str
+    total_seats: int
+    seats_booked: int
+    num_bookings: int
+
+class ReportOut(BaseModel):
+    total_bookings: int
+    total_persons: int
+    shows: list[ShowReportItem]
