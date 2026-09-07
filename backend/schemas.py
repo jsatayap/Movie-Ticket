@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from datetime import datetime
 
 class MovieOut(BaseModel):
@@ -19,8 +19,8 @@ class ShowtimeOut(BaseModel):
 
 class BookingCreate(BaseModel):
     showtime_id: int
-    customer_name: str
-    num_persons: int
+    customer_name: str = Field(min_length=1, max_length=100) # blocks blank names
+    num_persons: int = Field(gt=0, le=20) # blocks zero/negative, caps input size
 
 class BookingOut(BaseModel):
     id: int
