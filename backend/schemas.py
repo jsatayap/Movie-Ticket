@@ -5,6 +5,7 @@ class MovieOut(BaseModel):
     id: int
     title: str
     duration_min: int
+    poster_url: str | None = None
     class Config:
         from_attributes = True
 
@@ -28,6 +29,7 @@ class BookingOut(BaseModel):
     customer_name: str
     num_persons: int
     status: str
+    showtime: ShowtimeOut 
     class Config:
         from_attributes = True
 

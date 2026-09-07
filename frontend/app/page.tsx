@@ -17,19 +17,28 @@ export default async function Home() {
             // so it reads as "clickable content," not just plain text.
             <div
               key={show.id}
-              className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md transition"
+              className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex items-stretch"
             >
-              <h2 className="text-lg font-semibold text-slate-800">{show.movie.title}</h2>
-              <p className="text-sm text-slate-500 mt-1">{show.movie.duration_min} min</p>
-              <div className="mt-3 text-sm text-slate-600 space-y-1">
-                <p>🕒 {new Date(show.show_time).toLocaleString()}</p>
-                <p>📍 {show.hall} — {show.total_seats} seats</p>
+              <img
+                src={show.movie.poster_url || "https://picsum.photos/seed/placeholder/400/600"}
+                alt={show.movie.title}
+                className="w-28 sm:w-32 h-auto object-cover flex-shrink-0"
+              />
+              <div className="p-4 flex-col justify-between flex-1">
+                <div>
+                  <h2 className="text-lg font-semibold text-slate-800">{show.movie.title}</h2>
+                  <p className="text-sm text-slate-500 mt-1">{show.movie.duration_min} min</p>
+                  <div className="mt-2 text-sm text-slate-600 space-y-1">
+                    <p>🕒 {new Date(show.show_time).toLocaleString()}</p>
+                    <p>📍 {show.hall} — {show.total_seats} seats</p>
+                  </div>
+                </div>
+                <Link href={`/book/${show.id}`}>
+                  <button className="mt-4 w-full bg-slate-900 text-white text-sm font-medium py-2 rounded-lg hover:bg-slate-700 transition">
+                    Book Tickets
+                  </button>
+                </Link>
               </div>
-              <Link href={`/book/${show.id}`}>
-                <button className="mt-4 w-full bg-slate-900 text-white text-sm font-medium py-2 rounded-lg hover:bg-slate-700 transition">
-                  Book Tickets
-                </button>
-              </Link>
             </div>
           ))}
         </div>

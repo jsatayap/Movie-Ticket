@@ -36,3 +36,9 @@ export async function getReport() {
   if (!res.ok) throw new Error("Failed to fetch report");
   return res.json();
 }
+
+export async function getShow(showId: number) {
+  const res = await fetch(`${API_BASE}/shows/${showId}`, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to fetch show details");
+  return res.json();
+}

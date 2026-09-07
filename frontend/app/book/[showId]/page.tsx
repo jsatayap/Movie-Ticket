@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, use } from "react";
+import { useState, use, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { createBooking } from "../../../lib/api";
+import { createBooking, getShow } from "../../../lib/api";
 
 export default function BookPage({ params }: { params: Promise<{ showId: string }> }) {
   const { showId } = use(params);
@@ -10,6 +10,14 @@ export default function BookPage({ params }: { params: Promise<{ showId: string 
   const [name, setName] = useState("");
   const [persons, setPersons] = useState(1);
   const [error, setError] = useState("");
+  const [show, setShow] = useState<any>(null);
+
+  // Fetch the showtime details once, when the page first loads
+  useEffect(() => {
+    getShow(parseInt(showId))
+      .then(setShow)
+      .catch(() => setError("Could not load showtime details."));
+  }, [showId]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -31,7 +39,16 @@ export default function BookPage({ params }: { params: Promise<{ showId: string 
 
   return (
     <div className="max-w-md mx-auto px-6 py-10">
-      <h1 className="text-2xl font-bold text-slate-800 mb-6">Book Tickets</h1>
+      <h1 className="text-2xl font-bold text-slate-800 mb-2">Book Tickets</h1>
+
+      {/* Show details card — only renders once `show` has loaded */}
+      {show && (
+        <div className="bg-slate-100 border border-slate-200 rounded-lg p-4 mb-6 text-sm text-slate-700 space-y-1">
+          <p className="font-semibold text-slate-800">{show.movie.title}</p>
+          <p>🕒 {new Date(show.show_time).toLocaleString()}</p>
+          <p>📍 {show.hall}</p>
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-4">
         <div>
@@ -56,7 +73,6 @@ export default function BookPage({ params }: { params: Promise<{ showId: string 
           />
         </div>
 
-        {/* Only rendered when there's an error — keeps the form clean otherwise */}
         {error && (
           <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
             {error}

@@ -9,7 +9,7 @@ class Movie(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, nullable=False)
     duration_min = Column(Integer, nullable=False)
-
+    poster_url = Column(String, nullable=True)
     showtimes = relationship("Showtime", back_populates="movie")
 
 
