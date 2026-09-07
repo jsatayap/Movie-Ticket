@@ -16,7 +16,12 @@ export async function createBooking(data: {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-  if (!res.ok) throw new Error("Failed to create booking");
+  if (!res.ok){
+    // FastAPI sends error details as { detail: "..." }
+    // .catch(() => null) guards against the response body not being valid JSON.
+    const errorData = await res.json().catch(() => null);
+    throw new Error(errorData?.detail || "Failed to create booking");
+  }
   return res.json();
 }
 
