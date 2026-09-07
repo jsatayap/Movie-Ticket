@@ -3,6 +3,7 @@
 A movie theatre booking web app. Built with Next.js (frontend), FastAPI (backend), and PostgreSQL (database).
 
 **Flow:** Browse showtimes → Book tickets (name + number of persons) → Print ticket → View booking report.
+<img width="1909" height="880" alt="movieticket1" src="https://github.com/user-attachments/assets/7001a18e-4c87-4b5c-b9d1-fabe478e3a1f" />
 
 ---
 
