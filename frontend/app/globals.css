@@ -19,6 +19,17 @@
   }
 }
 
+@media print {
+  body {
+    background: white !important;
+  }
+
+  /* Removes default browser print margins so the ticket uses the page more fully */
+  @page {
+    margin: 0.5cm;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

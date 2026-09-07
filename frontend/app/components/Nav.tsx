@@ -4,7 +4,7 @@ import Link from "next/link";
 // the same header "for free" via layout.tsx.
 export default function Nav() {
   return (
-    <nav className="bg-slate-900 text-white px-6 py-4 flex items-center justify-between">
+    <nav className="bg-slate-900 text-white px-6 py-4 flex items-center justify-between print:hidden">
       <Link href="/" className="text-xl font-bold tracking-tight">
         🎬 MovieTicket
       </Link>
