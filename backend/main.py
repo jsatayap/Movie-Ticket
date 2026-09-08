@@ -1,3 +1,14 @@
+"""
+main.py - FastAPI application entrypoint
+This is the file 'uvicorn main:app' points at. 
+ 1. creates all database tables on startup
+ 2. instantiates the FastAPI app
+ 3. configure cors so next.js frontend is owned to call this api
+ 4. registers each feaure's routers so their endpoints become part of the app
+
+ main must be run from inside the 'backend/' folder.
+"""
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database import engine, Base

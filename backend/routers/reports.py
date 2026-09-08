@@ -1,3 +1,9 @@
+"""
+routers/reports.py — aggregate booking stats.
+ 1. powers frontend's report page (app/report/page.tsx)
+ 2. overall totals plus a per-showtime breakdown of how full each screening is.
+"""
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import func

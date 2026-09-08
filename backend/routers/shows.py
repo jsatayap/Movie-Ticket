@@ -1,3 +1,8 @@
+"""
+routers/shows.py — read-only endpoint for browsing showtimes.
+ 1. powers frontend's homepage (app/page.tsx), which lists every showtime with its movie details.
+"""
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from database import get_db

@@ -1,3 +1,9 @@
+"""
+schemas.py - pydantic schemas for request validation and response shaping
+ 1. defines what JSON shape the API accepts and returns
+ 2. separate from models.py so API can stay stable even if DB schema changes internally
+ 3. naming convention: "...Out" = response schema, "...Create" = request schema
+"""
 from pydantic import BaseModel, Field
 from datetime import datetime
 
@@ -20,8 +26,8 @@ class ShowtimeOut(BaseModel):
 
 class BookingCreate(BaseModel):
     showtime_id: int
-    customer_name: str = Field(min_length=1, max_length=100) # blocks blank names
-    num_persons: int = Field(gt=0, le=20) # blocks zero/negative, caps input size
+    customer_name: str = Field(min_length=1) # blocks blank names
+    num_persons: int = Field(gt=0) # blocks zero/negative
 
 class BookingOut(BaseModel):
     id: int

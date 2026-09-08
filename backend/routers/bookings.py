@@ -1,3 +1,9 @@
+"""
+routers/bookings.py — create and look up bookings.
+ 1. a showtime can never be booked past its total_seats capacity. 
+ 2. powers frontend's booking form (app/book/[showId]/page.tsx) and ticket page (app/ticket/[bookingId]/page.tsx).
+"""
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database import get_db

@@ -1,3 +1,13 @@
+"""
+models.py - SQLAlchemy models database schema
+ 1. defines the three tables:
+  a. movie: film that can be shown
+  b. showtime: one screening of a movie, specific hall, specific time
+  c. booking: reservation of n seats against one showtime
+ 2. tables created via 'base.metadata.create_all()' in main.py/seed.py
+ 3. no migration; manual update to change a column
+"""
+
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, ARRAY
 from sqlalchemy.orm import relationship
 from database import Base

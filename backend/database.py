@@ -1,3 +1,11 @@
+"""
+database.py - database connection and session setup
+ 1. reads the DATABASE_URL from backend/.env, creates the SQLAlchemy engine
+ 2. 'Base': declarative base every model in models.py inherits from
+ 3. 'SessionLocal': session factory used to create new DB sessions
+ 4. 'get_db()': FastAPI dependency, yields session per-request and quarantees close
+"""
+
 import os
 from pathlib import Path
 from sqlalchemy import create_engine

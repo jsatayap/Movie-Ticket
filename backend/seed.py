@@ -1,3 +1,9 @@
+"""
+seed.py - populates database with demo movies and showtimes
+ 1. run manually after setup ('python seed.py') to display demo
+ 2. safe to re-run: it checks whether movies already exist rather than creating duplicates
+"""
+
 from database import SessionLocal, engine, Base
 import models
 from datetime import datetime, timedelta
